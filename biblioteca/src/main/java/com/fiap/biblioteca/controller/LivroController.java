@@ -22,7 +22,7 @@ public class LivroController {
 
 
     @GetMapping("/cadastrar")
-    public String  novoProdutoForm(Model model){
+    public String  cadastrar(Model model){
         model.addAttribute("livros", new Livro());
         return "formCadLivro"
         ;}
