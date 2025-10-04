@@ -6,8 +6,28 @@
 </head>
 <body>
 <h1>Bem-vindo à Biblioteca!</h1>
-<p>Página estática de teste</p>
-<a th:href="@{/livros/cadastrar}">Adicionar Produto</a>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>TITULO</th>
+      <th>AUTOR</th>
+      <th>ANO</th>
+      <th>STATUS</th>
+    </tr>
+    <tr th:each="livro : ${listaLivros}">
+      <td th:text="${livro.id}"></td>
+      <td th:text="${livro.titulo}"></td>
+      <td th:text="${livro.autor}"></td>
+      <td th:text="${livro.ano}"></td>
+      <td th:text="${livro.status} ? 'Indisponível' : 'Disponível'"></td>
+      <td>
+        <a th:href="@{/livros/editar/{id}(id=${livro.id})}">[EDITAR]</a>
+        <a th:href="@{/livros/deletar/{id}(id=${livro.id})}">[DELETAR]</a>
+      </td>
+    </tr>
+  </table>
+  <a th:href="@{/livros/cadastrar}">Adicionar Novo Livro</a>
+
 </body>
 </html>
 
