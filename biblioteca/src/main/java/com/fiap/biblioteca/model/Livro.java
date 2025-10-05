@@ -1,7 +1,6 @@
 package com.fiap.biblioteca.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.*;
 import jakarta.validation.constraints.*;
 
 @Entity

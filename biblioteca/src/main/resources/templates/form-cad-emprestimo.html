@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Emprestimo</title>
+</head>
+<body>
+    <form th:action="@{/livros/emprestar}" th:object="${emprestimo}" method="post">
+        <input type="hidden" th:field="*{livro.id}">
+
+        <p>Livro: <span th:text="${livro.titulo}"></span></p>
+
+        <label for="usuario">Usuario:</label>
+        <select th:field="*{usuario.id}" id="usuario" >
+            <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.nome}"></option>
+        </select>
+
+        <button type="submit">Confirmar Empréstimo</button>
+    </form>
+</body>
+</html>

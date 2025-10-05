@@ -23,6 +23,9 @@
       <td>
         <a th:href="@{/livros/editar/{id}(id=${livro.id})}">[EDITAR]</a>
         <a th:href="@{/livros/deletar/{id}(id=${livro.id})}">[DELETAR]</a>
+        <a th:if="${!livro.status}" th:href="@{/livros/emprestar/{id}(id=${livro.id})}">[EMPRESTAR]</a>
+        <a th:if="${livro.status}" th:href="@{/livros/devolver/{id}(id=${livro.id})}">[DEVOLVER]</a>
+
       </td>
     </tr>
   </table>
