@@ -6,6 +6,14 @@
 </head>
 <body>
 <h1>Bem-vindo à Biblioteca!</h1>
+  <form th:action="@{/livros}" method="get">
+    <label>
+      <input type="checkbox" name="disponiveis" value="true" th:checked="${param.disponiveis}">
+      Mostrar apenas disponíveis
+    </label>
+    <button type="submit">Filtrar</button>
+  </form>
+
   <table>
     <tr>
       <th>ID</th>
@@ -19,18 +27,31 @@
       <td th:text="${livro.titulo}"></td>
       <td th:text="${livro.autor}"></td>
       <td th:text="${livro.ano}"></td>
-      <td th:text="${livro.status} ? 'Indisponível' : 'Disponível'"></td>
+      <td th:text="${livro.status} ? 'Emprestado' : 'Disponível'"></td>
       <td>
-        <a th:href="@{/livros/editar/{id}(id=${livro.id})}">[EDITAR]</a>
-        <a th:href="@{/livros/deletar/{id}(id=${livro.id})}">[DELETAR]</a>
+        <a th:if="${!livro.status}" th:href="@{/livros/editar/{id}(id=${livro.id})}">[EDITAR]</a>
+        <a th:if="${!livro.status}" th:href="@{/livros/deletar/{id}(id=${livro.id})}">[DELETAR]</a>
         <a th:if="${!livro.status}" th:href="@{/livros/emprestar/{id}(id=${livro.id})}">[EMPRESTAR]</a>
         <a th:if="${livro.status}" th:href="@{/livros/devolver/{id}(id=${livro.id})}">[DEVOLVER]</a>
-
       </td>
     </tr>
   </table>
   <a th:href="@{/livros/cadastrar}">Adicionar Novo Livro</a>
 
+  <table>
+    <tr>
+      <th>LIVRO</th>
+      <th>USUARIO</th>
+      <th>DATA DE RETIRADA</th>
+      <th>DATA DE DEVOLUÇÃO</th>
+    </tr>
+    <tr th:each="emprestimo : ${listaEmprestimos}">
+      <td th:text="${emprestimo.livro.titulo}"></td>
+      <td th:text="${emprestimo.usuario.nome}"></td>
+      <td th:text="${emprestimo.dataRetirada}"></td>
+      <td th:text="${emprestimo.dataEntrega}"></td>
+    </tr>
+  </table>
 </body>
 </html>
 

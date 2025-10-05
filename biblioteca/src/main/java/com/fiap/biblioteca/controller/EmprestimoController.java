@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/livros")
 public class EmprestimoController {
@@ -23,7 +25,7 @@ public class EmprestimoController {
     }
 
     @GetMapping("/emprestar/{id}")
-    public String listar(@PathVariable("id") Long id, Model model){
+    public String cadastrar(@PathVariable("id") Long id, Model model){
         Livro livro = livroService.buscarPorId(id);
 
         Emprestimo emprestimo = new Emprestimo();

@@ -1,6 +1,7 @@
 package com.fiap.biblioteca.controller;
 
 import com.fiap.biblioteca.model.Livro;
+import com.fiap.biblioteca.service.EmprestimoService;
 import com.fiap.biblioteca.service.LivroService;
 
 import jakarta.validation.*;
@@ -9,18 +10,37 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/livros")
 public class LivroController {
     private final LivroService service;
+    private EmprestimoService emprestimoService;
 
-    public LivroController(LivroService service){this.service = service;}
+    public LivroController(LivroService service, EmprestimoService emprestimoService){
+        this.service = service;
+        this.emprestimoService = emprestimoService;
+    }
+
+
 
     @GetMapping
-    public String listar(Model model){
-        model.addAttribute("listaLivros", service.listarTodos());
-        return "livros";
+    public String listar(@RequestParam(required = false) Boolean disponiveis, Model model){
+        List<Livro> livros;
+
+        if (Boolean.TRUE.equals(disponiveis)){
+            livros = service.listarDisponiveis();
+        } else {
+            livros = service.listarTodos();
+        }
+
+        model.addAttribute("listaLivros", livros);
+        model.addAttribute("listaEmprestimos", emprestimoService.listarTodos());
+        return "/livros";
     }
+
 
     @GetMapping("/cadastrar")
     public String cadastrar(Model model){
@@ -42,7 +62,6 @@ public class LivroController {
         model.addAttribute("livro", service.buscarPorId(id));
         return "form-cad-livro";
     }
-
 
 
     @GetMapping("/deletar/{id}")

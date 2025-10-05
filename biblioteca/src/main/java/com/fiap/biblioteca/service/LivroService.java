@@ -14,6 +14,10 @@ public class LivroService {
 
     public List<Livro> listarTodos(){return  repository.findAll();}
 
+    public List<Livro> listarDisponiveis(){
+        return repository.findByStatusFalse();
+    }
+
     public Livro salvar(Livro livro){return repository.save(livro);}
 
     public Livro buscarPorId(Long id) {return repository.findById(id).orElse(null);}
