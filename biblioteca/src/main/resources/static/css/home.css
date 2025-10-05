@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    font-family: 'Victor Mono', monospace;
+
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.Nav-Menu {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    background-color: #664caf; 
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    border-top: 3px solid #B19CD9;  
+    border-left: 3px solid #B19CD9;  
+    border-right: 3px solid #53466b;  
+    border-bottom: 3px solid #53466b;  
+
+}
+
+.Nav-Menu p {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+.Nav-Anchor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    
+}
+
+.Nav-Anchor a{
+    width: 70%;
+    color: #664caf;
+    text-decoration: none;
+    background-color: #ffffff;
+    padding: 4px 0px 4px 0px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.Nav-Anchor a:hover {
+   background-color: #4CAF50;
+   color: #ffffff;
+   transition: 0.1s ease-in-out;
+}

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Minha Página</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 </head>
 <body>
-      <p>BIBLIOTECA ONLINE</p>
-      <a th:href="@{/livros}">LIVROS</a>
-      <a th:href="@{/usuarios}">USUARIOS</a>
+    <div class="Nav-Menu">
+        <p>BIBLIOTECA ONLINE</p>
+        <div class="Nav-Anchor">
+            <a th:href="@{/livros}">LIVROS</a>
+            <a th:href="@{/usuarios}">USUARIOS</a>
+        </div>
+    </div>
+
 </body>
 </html>
