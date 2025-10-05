@@ -45,7 +45,6 @@ form button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
 }
 
 form button:hover {
@@ -53,3 +52,17 @@ form button:hover {
     transition: 0.1s ease-in-out;
 }
 
+.erroUser{
+    color: red;
+}
+
+.voltar{
+    color: #4CAF50;
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+.voltar:hover{
+    text-decoration: underline;
+}

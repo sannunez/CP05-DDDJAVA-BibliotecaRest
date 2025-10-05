@@ -3,7 +3,8 @@ package com.fiap.biblioteca.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.List;
+
+import jakarta.validation.constraints.*;;
 
 @Entity
 public class Emprestimo {
@@ -20,6 +21,7 @@ public class Emprestimo {
 
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
+    @NotNull(message = "Um usuário deve ser selecionado")
     private Usuario usuario;
 
     public Long getId() {

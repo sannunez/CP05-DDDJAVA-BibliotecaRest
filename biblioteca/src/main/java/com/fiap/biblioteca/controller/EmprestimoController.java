@@ -5,8 +5,12 @@ import com.fiap.biblioteca.model.Livro;
 import com.fiap.biblioteca.service.EmprestimoService;
 import com.fiap.biblioteca.service.LivroService;
 import com.fiap.biblioteca.service.UsuarioService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +43,13 @@ public class EmprestimoController {
     }
 
     @PostMapping("/emprestar")
-    public String salvar(@ModelAttribute Emprestimo emprestimo) {
+    public String salvar(@Valid @ModelAttribute Emprestimo emprestimo, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("livro", livroService.buscarPorId(emprestimo.getLivro().getId()));
+            model.addAttribute("usuarios", usuarioService.listarTodos());
+            return "form-cad-emprestimo";
+        }
+
         Livro livro = livroService.buscarPorId(emprestimo.getLivro().getId());
         emprestimo.setLivro(livro);
 
@@ -50,6 +60,7 @@ public class EmprestimoController {
 
         return "redirect:/livros";
     }
+
 
     @GetMapping("/devolver/{id}")
     public String devolver(@PathVariable Long id) {

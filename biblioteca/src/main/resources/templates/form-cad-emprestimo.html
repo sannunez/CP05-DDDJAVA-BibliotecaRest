@@ -15,8 +15,10 @@
         <select th:field="*{usuario.id}" id="usuario" >
             <option th:each="user : ${usuarios}" th:value="${user.id}" th:text="${user.nome}"></option>
         </select>
-
+            <p th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}" class="erroUser"></p>
+        
         <button type="submit">Confirmar Empréstimo</button>
+        <a th:href="@{/}" class="voltar">VOLTAR</a>
     </form>
 
 </body>
