@@ -10,7 +10,7 @@
   <form th:action="@{/livros}" method="get">
     <label>
       <input type="checkbox" name="disponiveis" value="true" th:checked="${param.disponiveis}">
-      Mostrar apenas disponíveis
+      Mostrar apenas livros disponíveis
     </label>
     <button type="submit">Filtrar</button>
   </form>
